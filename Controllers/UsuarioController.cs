@@ -23,6 +23,13 @@ namespace Api.Controllers
             return Ok(usuarios);
         }
 
+        [HttpPost("Login")]
+        public async Task<ActionResult<List<UsuarioModel>>> Login([FromBody] UsuarioModel usuarioModel)
+        {
+            UsuarioModel usuario = await _usuarioRepositorio.Login(usuarioModel.UsuarioEmail, usuarioModel.UsuarioSenha);
+            return Ok(usuario);
+        }
+
         [HttpGet("GetUsuarioId/{id}")]
         public async Task<ActionResult<UsuarioModel>> GetUsuarioId(int id)
         {
